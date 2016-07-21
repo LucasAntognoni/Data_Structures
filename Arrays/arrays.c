@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include <sdtio.h>
+#include <stdio.h>
 #include "arrays.h"
 
 ARRAY *array_init()
@@ -18,7 +18,7 @@ ARRAY *array_init()
   return a;
 }
 
-void free_array(array *a)
+void free_array(ARRAY *a)
 {
   if (a -> elements != 0)
   {
@@ -38,7 +38,7 @@ int array_capacity(ARRAY *a)
   return a -> capacity;
 }
 
-static void resize_array(array *a, int capacity)
+static void resize_array(ARRAY *a, int capacity)
 {
   void **items = realloc(a->items, sizeof(void *) * capacity);
 
@@ -49,18 +49,18 @@ static void resize_array(array *a, int capacity)
   }
 }
 
-void add_element(array *a, void *item)
+void add_element(ARRAY *a, void *item)
 {
   if (a -> elements == a -> capacity)
   {
     resize_array(a, (a -> capacity) * 2);
   }
 
-  a -> elements += 1;
   a -> items[a -> elements] = item;
+  a -> elements += 1;
 }
 
-void set_element(array *a, int index, void *item)
+void set_element(ARRAY *a, int index, void *item)
 {
   if (index >= 0 && index < a -> elements)
   {
@@ -68,7 +68,7 @@ void set_element(array *a, int index, void *item)
   }
 }
 
-void *get_element(array *a, int index)
+void *get_element(ARRAY *a, int index)
 {
   if (index >= 0 && index < a -> elements)
   {
@@ -78,23 +78,20 @@ void *get_element(array *a, int index)
   return NULL;
 }
 
-void delete_element(array *a, int index)
+void delete_element(ARRAY *a, int index)
 {
   int i = 0;
 
   if (index >= 0 && index < a -> elements)
   {
-    a -> items[index] = NULL;
-
     for(i = index; i < a -> elements - 2; i++)
     {
       a -> items[i] = a -> items[i + 1];
-      a -> items[i + 1] =  NULL;
     }
 
     a -> elements -= 1;
 
-    if (a -> elements > 0 && a -> elements == (v -> capacity) / 4)
+    if (a -> elements > 0 && a -> elements == (a -> capacity) / 4)
     {
       resize_array(a, (a -> capacity / 2));
     }
