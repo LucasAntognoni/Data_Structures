@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include "arrays.h"
 
 ARRAY *array_init()
@@ -12,7 +13,7 @@ ARRAY *array_init()
   {
     a -> capacity = ARRAY_INIT_CAPACITY;
     a -> elements = 0;
-    a -> items = malloc (sizeof(void) * (a -> capacity));
+    a -> data = malloc (sizeof(void) * (a -> capacity));
   }
 
   return a;
@@ -20,9 +21,19 @@ ARRAY *array_init()
 
 void free_array(ARRAY *a)
 {
+  printf("hue 0");
   if (a -> elements != 0)
   {
-    free(a -> items);
+    int i = 0;
+    printf("hue 1");
+    for (i = 0; i < (a -> elements); i++)
+    {
+      if(a -> data[i] != NULL)
+      {
+        printf("hue 2" );
+        free(a -> data[i]);
+      }
+    }
   }
 
   free(a);
@@ -40,11 +51,12 @@ int array_capacity(ARRAY *a)
 
 static void resize_array(ARRAY *a, int capacity)
 {
-  void **items = realloc(a->items, sizeof(void *) * capacity);
+  void** data = malloc(sizeof(void *) * capacity);
 
-  if (items != NULL)
+  if(data)
   {
-    a->items = items;
+    memcpy(data, a -> data, (a -> elements) * sizeof(void*));
+    a->data = data;
     a->capacity = capacity;
   }
 }
@@ -56,7 +68,7 @@ void add_element(ARRAY *a, void *item)
     resize_array(a, (a -> capacity) * 2);
   }
 
-  a -> items[a -> elements] = item;
+  a -> data[a -> elements] = item;
   a -> elements += 1;
 }
 
@@ -64,7 +76,7 @@ void set_element(ARRAY *a, int index, void *item)
 {
   if (index >= 0 && index < a -> elements)
   {
-    a -> items[index] = item;
+    a -> data[index] = item;
   }
 }
 
@@ -72,7 +84,7 @@ void *get_element(ARRAY *a, int index)
 {
   if (index >= 0 && index < a -> elements)
   {
-    return a -> items[index];
+    return a -> data[index];
   }
 
   return NULL;
@@ -86,7 +98,7 @@ void delete_element(ARRAY *a, int index)
   {
     for(i = index; i < a -> elements - 2; i++)
     {
-      a -> items[i] = a -> items[i + 1];
+      a -> data[i] = a -> data[i + 1];
     }
 
     a -> elements -= 1;
