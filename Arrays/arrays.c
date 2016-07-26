@@ -21,7 +21,6 @@ ARRAY *array_init()
 
 void free_array(ARRAY *a)
 {
-
   if (a -> elements != 0)
   {
     free(a -> data);
