@@ -9,7 +9,7 @@ typedef struct array
     int capacity;
     int elements;
 } ARRAY;
-
+//s
 ARRAY *array_init();
 
 void free_array(ARRAY *);

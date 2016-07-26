@@ -18,7 +18,7 @@ ARRAY *array_init()
 
   return a;
 }
-
+//gogogo
 void free_array(ARRAY *a)
 {
   printf("hue 0");

@@ -10,7 +10,7 @@ int main(void)
     ARRAY *array;
 
     array =  array_init();
-
+    //s
     add_element(array, "Bonjour");
     add_element(array, "tout");
     add_element(array, "le");
