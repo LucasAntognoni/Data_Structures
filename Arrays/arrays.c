@@ -18,24 +18,14 @@ ARRAY *array_init()
 
   return a;
 }
-//gogogo
+
 void free_array(ARRAY *a)
 {
-  printf("hue 0");
+
   if (a -> elements != 0)
   {
-    int i = 0;
-    printf("hue 1");
-    for (i = 0; i < (a -> elements); i++)
-    {
-      if(a -> data[i] != NULL)
-      {
-        printf("hue 2" );
-        free(a -> data[i]);
-      }
-    }
+    free(a -> data);
   }
-
   free(a);
 }
 
