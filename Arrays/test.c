@@ -7,33 +7,34 @@ int main(void)
 {
     int i;
 
-    ARRAY *array;
+    ARRAY *arrei;
 
-    array =  array_init();
+    arrei =  array_init();
 
-    add_element(array, "Bonjour");
-    add_element(array, "tout");
-    add_element(array, "le");
-    add_element(array, "monde");
+    printf("bananaaaa\n");
 
-    for (i = 0; i < array_elements(array); i++)
+    add_element(arrei, (int*) 1);
+    add_element(arrei, (int*) 2);
+    add_element(arrei, (int*) 3);
+
+    for (i = 0; i < array_elements(arrei); i++)
     {
-      printf("%s ", (char *) get_element(array, i));
+      printf("%d ", (int *) get_element(arrei, i));
     }
     printf("\n");
 
-    delete_element(array, 3);
-    delete_element(array, 2);
-    delete_element(array, 1);
+    delete_element(arrei, 0);
+    delete_element(arrei, 1);
+    delete_element(arrei, 2);
 
-    set_element(array, 0, "Hello");
-    add_element(array, "World");
+    set_element(arrei, 0, (int *) 4);
+    add_element(arrei, (int *) 5);
 
-    for (i = 0; i < array_elements(array); i++)
+    for (i = 0; i < array_elements(arrei); i++)
     {
-      printf("%s ", (char *) get_element(array, i));
+      printf("%d ", (int *) get_element(arrei, i));
     }
     printf("\n");
 
-    free_array(array);
+    free_array(arrei);
 }
