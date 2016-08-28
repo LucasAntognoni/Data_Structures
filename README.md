@@ -1,6 +1,4 @@
 # Data Structures
-
-$Data Structures
 ========
 
 $Data Structures in C for general use.
