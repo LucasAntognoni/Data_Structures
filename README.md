@@ -1,7 +1,6 @@
 # Data Structures
-========
 
-$Data Structures in C for general use.
+Data Structures in C for general use.
 
 Features
 --------
@@ -17,3 +16,5 @@ Support
 
 License
 -------
+
+The project is licensed under the MIT license.
